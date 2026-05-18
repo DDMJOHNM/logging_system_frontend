@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "nuxt/app": ["./node_modules/nuxt/dist/app/index.js"]
+    }
+  },
+  "include": [
+    "app/**/*.vue",
+    "app/**/*.ts",
+    "*.d.ts",
+    ".nuxt/**/*.d.ts",
+    "nuxt.config.ts",
+    "app.config.ts"
+, "app/middleware/auth.ts.global", "app/app.vue"  ],
+  "exclude": ["node_modules", "dist", ".output"]
+}

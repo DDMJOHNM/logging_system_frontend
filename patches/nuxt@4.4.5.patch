@@ -1,0 +1,7 @@
+diff --git a/app.d.ts b/app.d.ts
+index f313e6f7ec46554b208ba79386953eb05c0fc6e5..87a04c5795827db3aa167c0e27aeb2198736b2a5 100644
+--- a/app.d.ts
++++ b/app.d.ts
+@@ -1 +1 @@
+-export * from './dist/app/index.ts'
++export * from './dist/app/index.js'
