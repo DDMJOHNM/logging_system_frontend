@@ -20,6 +20,7 @@ export function useAuth() {
     session.value = token ?? '1'
   }
 
+  //need to add a call to the backend to invalidate the token
   function signOut() {
     session.value = null
   }

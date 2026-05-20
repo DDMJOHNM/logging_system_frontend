@@ -31,6 +31,7 @@ function viteIgnoreAppManifestDynamicImport(): Plugin {
 export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: '123',
+    backendApiOrigin: 'http://127.0.0.1:8080',
     public: {
       apiBase: '/api',
       title: 'Hello Nuxt',
