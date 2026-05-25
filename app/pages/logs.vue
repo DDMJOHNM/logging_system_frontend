@@ -5,67 +5,19 @@
   </div>
 </template>
 <script setup lang="ts">
+const logs = ref<any[]>([])
 
-import {reactive} from 'vue';
-const dummyData = [
-{
-  "schema_version": "1.0.0",
-  "event_id": "3f8c1c4e-2c4a-4c1a-9e3d-9b2f0c7d9a40",
-  "event_type": "model.inference.completed",
-  "severity": "info",
-  "occurred_at": "2026-04-09T17:30:00Z",
-  "project_id": "project-12345",
-  "user_id": "user-67890",
-  "service_type": "chat-completion",
-  "request_id": "req-abc-123",
-  "tokens_used": 1520,
-  "latency_ms": 842,
-  "has_correction": false,
-  "has_recommended": true,
-  "has_appointment": false,
-  "provider": "OpenAI",
-  "model": "gpt-4.1"
-},
+onMounted(() => {
+  getLogs()
+})
 
-{
-  "schema_version": "1.0.0",
-  "event_id": "3f8c1c4e-2c4a-4c1a-9e3d-9b2f0c7d9a41",
-  "event_type": "model.inference.completed",
-  "severity": "info",
-  "occurred_at": "2026-04-09T17:30:00Z",
-  "project_id": "project-12345",
-  "user_id": "user-67890",
-  "service_type": "chat-completion",
-  "request_id": "req-abc-123",
-  "tokens_used": 1520,
-  "latency_ms": 842,
-  "has_correction": false,
-  "has_recommended": true,
-  "has_appointment": false,
-  "provider": "OpenAI",
-  "model": "gpt-4.1"
-},
-{
-  "schema_version": "1.0.0",
-  "event_id": "3f8c1c4e-2c4a-4c1a-9e3d-9b2f0c7d9a42",
-  "event_type": "model.inference.completed",
-  "severity": "info",
-  "occurred_at": "2026-04-09T17:30:00Z",
-  "project_id": "project-12345",
-  "user_id": "user-67890",
-  "service_type": "chat-completion",
-  "request_id": "req-abc-123",
-  "tokens_used": 1520,
-  "latency_ms": 842,
-  "has_correction": false,
-  "has_recommended": true,
-  "has_appointment": false,
-  "provider": "OpenAI",
-  "model": "gpt-4.1"
+async function getLogs() {
+  const { project_id } = useRoute().query
+  if (!project_id || typeof project_id !== 'string') return
+
+  const response = await $fetch<{ logs: { data: any[] } }>('/api/logs', { query: { project_id } })
+  logs.value = response.logs.data
+  console.log(logs.value)
 }
-];
-
-const logs = reactive(dummyData);
-
 </script>
 

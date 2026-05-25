@@ -14,24 +14,13 @@
 </template>
 <script setup lang="ts">
 import {reactive} from 'vue';
+//keep this hardcoded for now
 const projectCards = reactive([
   {
-    name: 'Project 1',
-    description: 'Project 1 description',
+    name: 'Positive Thought Counselling',
+    description: 'Counselling onBoarding System',
     id: '1',
-    logLink: '/logs?project_id=1',
-  },
-  {
-    name: 'Project 2',
-    description: 'Project 2 description',
-    id: '2',
-    logLink: '/logs?project_id=2',
-  },
-  {
-    name: 'Project 3',
-    description: 'Project 3 description',
-    id: '3',
-    logLink: '/logs?project_id=3',
-  },
+    logLink: '/logs?project_id=project-12345',
+  }
 ]);
 </script>
