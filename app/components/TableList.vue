@@ -31,7 +31,7 @@
         </td>
       </tr>
     </tbody>
-  </table>
+    </table>
 </template>
 <script setup lang="ts">
 const props = defineProps<{

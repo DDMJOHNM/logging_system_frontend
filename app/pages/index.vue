@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-2xl font-semibold text-slate-900 mb-[10px]">Dashboard</h1>
+    <h1 class="text-2xl font-semibold text-slate-900 mb-[10px]">Dashboard</h1> 
     <p class="mt-2 text-slate-600 mb-[20px]">Welcome to the unified logging and subscription manager.</p>
     <div class="flex flex-col gap-1 border border-gray-300 dark:border-gray-600 rounded-md p-1 mb-[10px]" 
     v-for="project in projectCards" :key="project.id">

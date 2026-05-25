@@ -22,7 +22,13 @@ export function useAuth() {
 
   //need to add a call to the backend to invalidate the token
   function signOut() {
-    session.value = null
+    try {
+      $fetch('/api/logout', { method: 'POST', body: { token: session.value } })
+    } catch (error) {
+      console.error('Error logging out', error)
+    } finally {
+      session.value = null
+    }
   }
 
   return { session, loggedIn, signIn, signOut }
