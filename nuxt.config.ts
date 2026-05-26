@@ -29,6 +29,9 @@ function viteIgnoreAppManifestDynamicImport(): Plugin {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
   runtimeConfig: {
     apiSecret: '123',
     backendApiOrigin: 'http://127.0.0.1:8080',
@@ -56,5 +59,6 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss','@nuxt/test-utils/module'],
   vite: {
     plugins: [viteIgnoreAppManifestDynamicImport()]
-  }
+  },
+  debug: true,
 })

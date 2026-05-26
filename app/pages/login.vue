@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-2xl font-semibold text-slate-900">Login</h1>
+    <h1 class="text-2xl font-semibold text-slate-900">Logging & Subscription Manager</h1>
     <input type="email" v-model="email" placeholder="Email" class="mt-2 rounded-md border border-slate-300 px-3 py-2 text-sm" />
     <br/>
     <input type="password" v-model="password" placeholder="Password" class="mt-2 rounded-md border border-slate-300 px-3 py-2 text-sm" />   

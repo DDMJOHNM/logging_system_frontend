@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="log in logs" :key="log.event_id">
+      <tr v-for="log in logs?.data ?? []" :key="log.event_id">
         <td class="border border-gray-300 dark:border-gray-600 p-[5px]">{{ log.occurred_at }}</td>
         <td class="border border-gray-300 dark:border-gray-600 p-[5px]">{{ log.event_id }}</td>
         <td class="border border-gray-300 dark:border-gray-600 p-[5px]">{{ log.event_type }}</td>
@@ -31,15 +31,49 @@
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7" class="border border-gray-300 dark:border-gray-600 p-[7px]">
+          <div class="flex justify-center items-center gap-2">
+            <button class="bg-blue-400 text-white px-1 py-1 rounded-md" @click="prevPage()">Prev</button>
+            <button class="bg-blue-400 text-white px-1 py-1 rounded-md" @click="nextPage()">Next</button>
+            {{ logs?.current_page }} ({{ logs?.to }} of {{ logs?.total }} totals: {{ logs?.total }})
+          </div>
+        </td>
+      </tr>    
+    </tfoot>
     </table>
 </template>
 <script setup lang="ts">
 const props = defineProps<{
-  logs: any[];
-}>();
+  getLogs: (page: number, per_page: number) => Promise<void>
+  logs: {
+    data: any[]
+    current_page: number
+    from: number
+    to: number
+    last_page: number
+    per_page: number
+    total: number
+  } | null
+}>()
 
 const viewLog = (event_id: string) => {
-  alert(`Viewing log ${event_id}`);
+  alert(`Viewing log ${event_id}`)
+}
+
+const currentPage = computed(() => props.logs?.current_page ?? 1)
+
+const totalPages = computed(() => props.logs?.last_page ?? 1)
+
+const prevPage = async () => {
+  if (currentPage.value <= 1) return
+  await props.getLogs(currentPage.value - 1, props.logs?.per_page ?? 10)
+}
+
+const nextPage = async () => {
+  if (currentPage.value >= totalPages.value) return
+  await props.getLogs(currentPage.value + 1, props.logs?.per_page ?? 10)
 }
 </script>
 
