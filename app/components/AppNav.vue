@@ -21,9 +21,12 @@
             {{ link.label }}
           </NuxtLink>
         </li>
+        <li>
+          <button class="rounded-md px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900" @click="logout()">Sign Out</button>
+        </li>
       </ul>
     </nav>
-  </header>
+   </header>
 </template>
 <script setup lang="ts">
 const activeClass = 'font-semibold text-emerald-700 bg-slate-100'
@@ -31,5 +34,22 @@ const activeClass = 'font-semibold text-emerald-700 bg-slate-100'
 const links = [
   { to: '/', label: 'Dashboard', useExactActive: true },
 ] as const
+  
+const { signOut } = useAuth()
 
+function logout() {
+  signOut();
+  navigateTo('/login');
+}
 </script>
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+</style>

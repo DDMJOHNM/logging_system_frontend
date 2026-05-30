@@ -29,6 +29,9 @@ function viteIgnoreAppManifestDynamicImport(): Plugin {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
   runtimeConfig: {
     apiSecret: '',
     // Local default; set NUXT_BACKEND_API_ORIGIN in Amplify for production.
