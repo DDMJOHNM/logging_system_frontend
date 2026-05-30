@@ -33,11 +33,17 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
   },
   runtimeConfig: {
-    apiSecret: '123',
+    apiSecret: '',
+    // Local default; set NUXT_BACKEND_API_ORIGIN in Amplify for production.
     backendApiOrigin: 'http://127.0.0.1:8080',
     public: {
       apiBase: '/api',
-      title: 'Hello Nuxt',
+      title: 'Logging System',
+    },
+  },
+  nitro: {
+    awsAmplify: {
+      runtime: 'nodejs20.x',
     },
   },
    $production: {
@@ -60,5 +66,5 @@ export default defineNuxtConfig({
   vite: {
     plugins: [viteIgnoreAppManifestDynamicImport()]
   },
-  debug: true,
+  debug: process.env.NODE_ENV !== 'production',
 })
