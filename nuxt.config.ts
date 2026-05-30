@@ -46,8 +46,9 @@ export default defineNuxtConfig({
       runtime: 'nodejs20.x',
     },
   },
-   $production: {
+  $production: {
     routeRules: {
+      '/api/**': { isr: false, cache: false },
       '/**': { isr: true },
     },
   },
