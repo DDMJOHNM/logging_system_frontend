@@ -34,7 +34,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     apiSecret: '',
-    // Local default; set NUXT_BACKEND_API_ORIGIN in Amplify for production.
+    // Default for local dev. Amplify build patches the baked value via amplify.yml (see .env.example).
     backendApiOrigin: 'http://127.0.0.1:8080',
     public: {
       apiBase: '/api',

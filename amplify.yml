@@ -8,7 +8,13 @@ frontend:
         - pnpm install --frozen-lockfile
     build:
       commands:
+        - env | grep -e '^NUXT_' >> .env || true
         - pnpm build
+        - |
+          if [ -n "$NUXT_BACKEND_API_ORIGIN" ]; then
+            sed -i.bak "s|http://127.0.0.1:8080|${NUXT_BACKEND_API_ORIGIN}|g" .amplify-hosting/compute/default/index.mjs
+            rm -f .amplify-hosting/compute/default/index.mjs.bak
+          fi
   artifacts:
     baseDirectory: .amplify-hosting
     files:
