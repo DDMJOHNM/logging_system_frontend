@@ -29,7 +29,7 @@
    </header>
 </template>
 <script setup lang="ts">
-const activeClass = 'font-semibold text-emerald-700 bg-slate-100'
+const activeClass = 'font-semibold text-emerald-700 bg-slate-100 hover:bg-slate-50'
 
 const links = [
   { to: '/', label: 'Dashboard', useExactActive: true },
