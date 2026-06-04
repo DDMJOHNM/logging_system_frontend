@@ -28,7 +28,7 @@
 
         </td>
         <td class="border border-gray-300 dark:border-gray-600 p-[5px]">
-          <button class="bg-blue-400 text-white px-1 py-1 rounded-md transition hover:bg-blue-300" @click="viewLog(log.event_id)">View</button>
+          <button class="bg-blue-400 text-white px-1 py-1 rounded-md transition hover:bg-blue-300" @click="viewLog(log.project_id, log.event_id)">View</button>
         </td>
       </tr>
     </tbody>
@@ -69,8 +69,8 @@ const props = defineProps<{
   } | null
 }>()
 
-const viewLog = (event_id: string) => {
-  alert(`Viewing log ${event_id}`)
+const viewLog = ( project_id: string, event_id: string) => {
+  navigateTo(`/log?project_id=${project_id}&event_id=${event_id}`)
 }
 
 const currentPage = computed(() => props.logs?.current_page ?? 1)
