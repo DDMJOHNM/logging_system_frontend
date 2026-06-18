@@ -7,22 +7,25 @@ describe('logDetailsMask', () => {
     const payload = {
       id: 'log-1',
       output: JSON.stringify({
-        name: 'John Doe',
+        first_name: 'John',
+        last_name: 'Doe',
         email: 'john.doe@example.com',
         password: 'password',
-      }),
+       }),
     }
 
     const maskedPayload = logDetailsMask(payload)
     const maskedOutput = JSON.parse(maskedPayload.output)
 
-    expect(maskedOutput.name).toBe('********')
+    expect(maskedOutput.first_name).toBe('********')
+    expect(maskedOutput.last_name).toBe('********')
     expect(maskedOutput.email).toBe('********')
     expect(maskedOutput.password).toBe('********')
     expect(maskedPayload.id).toBe('log-1')
 
     const originalOutput = JSON.parse(payload.output)
-    expect(originalOutput.name).toBe('John Doe')
+    expect(originalOutput.first_name).toBe('John')
+    expect(originalOutput.last_name).toBe('Doe')
     expect(originalOutput.email).toBe('john.doe@example.com')
     expect(originalOutput.password).toBe('password')
   })
