@@ -1,4 +1,5 @@
 import { createError, defineEventHandler, readBody, setResponseStatus } from 'h3'
+import { backendApiUrl } from '../utils/backendApiUrl'
 
 export default defineEventHandler(async (event) => {
   let body: { email?: string; password?: string }
@@ -24,7 +25,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const backendUrl = new URL('/api/login', origin)
+  const backendUrl = backendApiUrl(origin, '/api/login')
 
   let response: Response
   try {

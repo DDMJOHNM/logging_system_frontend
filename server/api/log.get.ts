@@ -1,4 +1,5 @@
 import { createError, defineEventHandler, getCookie, getQuery, type H3Event } from 'h3'
+import { backendApiUrl } from '../utils/backendApiUrl'
 
 const AUTH_SESSION_COOKIE = 'auth_session'
 
@@ -26,9 +27,9 @@ async function getLog(
   }
 
   const config = useRuntimeConfig()
-  const backendUrl = new URL(
+  const backendUrl = backendApiUrl(
+    `${config.backendApiOrigin}`,
     `/api/v1/logs/${project_id}/${event_id}`,
-    `${config.backendApiOrigin}`.replace(/\/$/, ''),
   )
 
   const response = await fetch(backendUrl, {
