@@ -75,6 +75,11 @@ bun run preview
 
 npx vitest
 
+pnpm test:unit                    # run all unit tests once
+pnpm test                         # watch mode
+pnpm exec vitest run test/unit/logDetailsMask.test.ts  # single file
+
+
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

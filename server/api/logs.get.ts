@@ -1,4 +1,5 @@
 import { createError, defineEventHandler, getCookie, getQuery, type H3Event } from 'h3'
+import { backendApiUrl } from '../utils/backendApiUrl'
 
 const AUTH_SESSION_COOKIE = 'auth_session'
 
@@ -25,9 +26,9 @@ async function getLogs(
   }
 
   const config = useRuntimeConfig()
-  const backendUrl = new URL(
+  const backendUrl = backendApiUrl(
+    `${config.backendApiOrigin}`,
     `/api/v1/logs/${project_id}`,
-    `${config.backendApiOrigin}`.replace(/\/$/, ''),
   )
   backendUrl.searchParams.set('page', String(Math.max(1, Number(page) || 1)))
   backendUrl.searchParams.set('perPage', String(Math.max(1, Math.min(100, Number(per_page) || 10))))

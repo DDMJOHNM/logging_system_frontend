@@ -1,4 +1,5 @@
 import { createError, defineEventHandler, getCookie } from 'h3'
+import { backendApiUrl } from '../utils/backendApiUrl'
 
 /** Must match `AUTH_SESSION_COOKIE` in `app/composables/useAuth.ts`. */
 const AUTH_SESSION_COOKIE = 'auth_session'
@@ -10,7 +11,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const config = useRuntimeConfig()
-  const backendUrl = new URL('/api/logout', `${config.backendApiOrigin}`.replace(/\/$/, ''))
+  const backendUrl = backendApiUrl(`${config.backendApiOrigin}`, '/api/logout')
 
   const response = await fetch(backendUrl, {
     method: 'POST',
