@@ -32,7 +32,7 @@ onMounted(async () => {
   const { project_id, event_id } = useRoute().query
   if (typeof project_id !== 'string' || typeof event_id !== 'string') return
   log.value = await getLog(project_id, event_id)
-  console.log(log.value?.payload)
+  log.value = logDetailsMask(log.value.payload)
 })
 
 async function getLog(project_id: string, event_id: string): Promise<Log> {
